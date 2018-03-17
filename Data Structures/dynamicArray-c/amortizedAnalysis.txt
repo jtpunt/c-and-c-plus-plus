@@ -1,0 +1,16 @@
+CS 261- Assignment 2
+Jonathan Perry
+7/17/2017
+1. It costs 56 units in the entire process of performing 32 consecutive push operations 
+   on an empty array which starts out at capacity 8, assuming that the array will double
+   in capacity each time a new item is added to the already full dynamic array. As N (i.e.
+   the number of pushes) grows larger, the big-oh complexity for push on an array that needs
+   to be resized is O(n) (worst-case). Without the need to resize, the big-oh complexity for 
+   a push is O(1) (best-case). On average, the big-complexity for a push of this problem is O(1)+.
+
+2. It costs 260 units in the entire process of performing 32 consecutive push operations on
+   an empty array which starts out at capacity 8, assuming that the array will grow by a constant
+   2 spaces each time a new item is added to an already full dynamic array. As N(i.e. the number
+   of pushes) grows larger, the big-oh complexity for a push on an array that needs to be resized
+   is O(n) (worst-case). Without the need to resize, the big-oh complexity for a push is O(1).
+   (best-case). On average, the big-complexity for a push of this problem is O(1)+.
