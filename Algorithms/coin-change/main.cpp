@@ -29,9 +29,7 @@ vector<int> convertString(string fileContent){
 	int length = fileContent.length();
 	for(int i = 0; i < length; i++){
 		// If the character is a space, skip it and move on
-		if(fileContent[i] == ' '){
-
-		}
+		if(fileContent[i] == ' '){}
 		else{
 			// Keep looping over the characters to read in possible multi-digit integers
 			while(fileContent[i] != ' ' && i != length){
@@ -56,8 +54,9 @@ void readFile(string fileName, vector<string> *content){
 	ifstream ioFile;
 	string line;
 	ioFile.open(fileName.c_str());
-	if (ioFile.fail())
+	if (ioFile.fail()){
 		cout << "The file failed to open: " << endl;
+	}
 	else{
 		while (getline(ioFile, line)){
 			(*content).push_back(line);
