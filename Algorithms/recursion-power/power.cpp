@@ -35,7 +35,7 @@ long int power(long int x, long int n){
 		cout << "\ntemp = " << temp << endl;
 		cout << "n = " << n << endl;
 		cout << "x = " << x << endl;
-		cout << "ODD: Returning x*(temp*temp)" << x << " * " << temp << " * " << temp << " = "<< temp*temp << endl;
+		cout << "ODD: Returning x*(temp*temp)" << x << " * " << temp << " * " << temp << " = "<< x*temp*temp << endl;
 		return x * temp * temp;
 	}
 }
