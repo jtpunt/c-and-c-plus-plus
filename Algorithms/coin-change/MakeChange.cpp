@@ -40,8 +40,8 @@ int makeChange(vector <int> V, int A, vector<int> &C){
 	// min_coins keeps track of the minimum # of coins needed for each value from 0..A
 	vector <int> min_coins(A+1, A+1);
 	vector <vector<int> > coinCount(A+1, vector<int>(V.size(), 0));
-    min_coins[0] = 0; // 0 coins means 0 change
-    // Loop through all values from 1 to A
+    	min_coins[0] = 0; // 0 coins means 0 change
+    	// Loop through all values from 1 to A
 	for(int cur_val=1; cur_val<=A; cur_val++){
 		// Loop through all coins in V
 		for(int j = V.size() - 1; j >= 0; j--){
@@ -59,8 +59,9 @@ int makeChange(vector <int> V, int A, vector<int> &C){
 			}
 		}
 	}
-	for(int i = 0; i < V.size(); i++)
+	for(int i = 0; i < V.size(); i++){
 		C.push_back(coinCount[A][i]);
+	}
 	return min_coins[A];
 }
 
