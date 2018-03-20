@@ -43,14 +43,16 @@ int makeChange(vector <int> V, int A, vector<int> &C){
     	min_coins[0] = 0; // 0 coins means 0 change
     	// Loop through all values from 1 to A
 	for(int cur_val=1; cur_val<=A; cur_val++){
-		// Loop through all coins in V
+		// Loop through all coins in V in decreasing order by the coin's value
+		// Try the largest coins first
 		for(int j = V.size() - 1; j >= 0; j--){
-			// See if the value of the coin in V is less than i
+			// See if the value of the coin in V is less than or equal to cur_val
 			if(V[j] <= cur_val){
-				// coins_needed = the minimum number of coins required to make the value
+				// coins_needed = min coins needed for the cent value leftover from (cur_val - V[j])
+				// plus 1 from using coin V[j]
 				int coins_needed = min_coins[cur_val-V[j]] + 1;
-				// if i - V[j] = 0, then 0 coins are needs
-				// if i - V[j] > 0, then more coins are needed
+				// if cur_val - V[j] = 0, then no coins are needed
+				// if cur_val - V[j] > 0, then more coins are needed
 				if(coins_needed < min_coins[cur_val]){
 					min_coins[cur_val] = coins_needed;
 					addVector(coinCount, cur_val-V[j], cur_val);
