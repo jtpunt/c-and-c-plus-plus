@@ -154,7 +154,7 @@ int main(){
 	outputResults(activitySelector(v2), 1);
 	outputResults(activitySelector(v3), 2);
 	outputResults(activitySelector(v4), 3);
-	return 1;
+	return 0;
 }
 
 
