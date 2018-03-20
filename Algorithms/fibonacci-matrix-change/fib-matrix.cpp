@@ -22,25 +22,26 @@ void multiply(int F[3], int M[3]){
 }
 // Returns the nth Fibonacci number
 void power(int F[3], int n){
-	if( n == 0 || n == 1)
+	if( n == 0 || n == 1){
 		return;
+	}
 	int M[3] = {1, 1, 0};
 	power(F, n/2);
-    multiply(F, F);
+    	multiply(F, F);
 
-    if (n%2 != 0){ // n is not even
-    	cout << "N is not even at " << n << "\n";
-    	multiply(F, M);
-    }
+    	if (n%2 != 0){ // n is not even
+    		cout << "N is not even at " << n << "\n";
+    		multiply(F, M);
+    	}
 }
 /* function that returns nth Fibonacci number */
 
 int fib(int n){
   int F[3] = {1, 1, 0}; // Fn+1, Fn, Fn-1
-  if (n == 0)
+  if (n == 0){
       return 0;
+  }
   power(F, n-1);
-
   return F[0];
 }
 /* Driver program to test above function */
