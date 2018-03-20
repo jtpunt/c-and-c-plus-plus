@@ -66,8 +66,9 @@ void readLine(ifstream& ioFile, vector<City*> &cities){
 	while(getline(ioFile, line)){
 		stringstream ss(line);
 		int city_id, x_coord, y_coord;
-		if(ss >> city_id >> x_coord >> y_coord)
+		if(ss >> city_id >> x_coord >> y_coord){
 			cities.push_back(newCity(city_id, x_coord, y_coord));
+		}
 	}
 	cout << "returning from readLine..\n";
 }
@@ -355,7 +356,7 @@ vector<City*> bruteForceTour(vector<CircularList<City*>*> &bins, vector<City*> &
 int main(int argc, char* argv[]){
 	if (argc != 2){
 		cout << "Only 1 argument needed. Please try again.\n";
-	    exit(1);
+	    	exit(1);
 	}
 	vector<City*> cities;
 	vector<City*> visited_cities_min;
