@@ -10,12 +10,12 @@ using std::endl;
 
 long int power(long int x, long int n){
 	long int temp;
-	// base case: a^0 = 0
-	if(x == 0){
+	// base case: x^0 = 1
+	if(n == 0){
 		cout << "BASE CASE: Returning x = " << x << endl;
 		return 1;
 	}
-	// base case: a^1 = 1
+	// base case: x^1 = x
 	else if(n == 1){
 		cout << "BASE CASE: Returning n = " << n << endl;
 		return x;
