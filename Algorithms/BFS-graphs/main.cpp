@@ -23,8 +23,9 @@ using std::vector;
  ***************************************************************************/
 int searchVector(vector<string> wrestlers, string search){
 	for(int i = 0; i < wrestlers.size(); i++){
-		if(wrestlers[i] == search)
+		if(wrestlers[i] == search){
 			return i;
+		}
 	}
 }
 /**************************************************************************
