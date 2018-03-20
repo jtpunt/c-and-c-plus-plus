@@ -3,7 +3,7 @@
  *
  *  Created on: Feb 16, 2018
  *  	Project: CS 325 Traveling Salesman Problem
- *      Author: Jonathan Perry, David Ramirez, Armand Reitz
+ *      Author: Jonathan Perry
  */
 #include "circularList.hpp"
 #include <fstream>   // std::ifstream, std::ofstream
@@ -207,17 +207,17 @@ int getNextCity(const vector<CircularList<T>*> &bins, const vector<int> &bin_num
 	int bin_idx = 0;
 	auto minCity = bins[bin_nums[0]]->getFront();
 	for(auto bin_num: bin_nums){
-			auto current = bins[bin_num]->getFront();
-			for(int i = 0; i < bins[bin_num]->getSize(); i++){
-				int dist = calculateDistance(start, current->value);
-				if(dist < minWeight){
-					minWeight = dist;
-					city = current->value;
-					minCity = current;
-					bin_idx = bin_num;
-				}
-				current = current->next;
+		auto current = bins[bin_num]->getFront();
+		for(int i = 0; i < bins[bin_num]->getSize(); i++){
+			int dist = calculateDistance(start, current->value);
+			if(dist < minWeight){
+				minWeight = dist;
+				city = current->value;
+				minCity = current;
+				bin_idx = bin_num;
 			}
+			current = current->next;
+		}
 	}
 	bins[bin_idx]->removeLink(minCity);
 	visited_cities.push_back(city);
