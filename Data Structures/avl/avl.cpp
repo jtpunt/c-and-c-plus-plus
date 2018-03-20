@@ -10,8 +10,9 @@ using std::cout;
 // Determines the height of a child node
 int height(struct Node *current){
 	// Leaf nodes have a height of zero, so zero is returned for a null value
-	if(EQ(current, NULL))
+	if(EQ(current, NULL)){
 		return 0;
+	}
 	return current->height;
 }
 
@@ -19,10 +20,12 @@ int height(struct Node *current){
 void setHeight(struct Node* current){
 	int lch = height(current->left),
 		rch = height(current->right);
-	if(GT(lch, rch))
+	if(GT(lch, rch)){
 		current->height = lch + 1;
-	else
+	}
+	else{
 		current->height = rch + 1;
+	}
 }
 // Returns the difference in height between the left and right child trees
 int getBalance(struct Node* current){
@@ -40,25 +43,20 @@ struct Node* newNode(TYPE value){
 // Returns new root of subtree
 struct Node* addNode(struct Node* current, TYPE value){
 	// Default case - perform normal insertion
-	if(EQ(current, NULL))
+	if(EQ(current, NULL)){
 		return newNode(value);
-	if(LT(value, current->value))
+	}
+	if(LT(value, current->value)){
 		current->left = addNode(current->left, value);
-	else if(GT(value, current->value))
+	}
+	else if(GT(value, current->value)){
 		current->right = addNode(current->right, value);
-	else // Equal keys are not allowed
+	}
+	else{ // Equal keys are not allowed
 		return current;
+	}
 	return balance(current);
 }
-/*
-  z                                y
- /  \                            /   \
-T1   y     Left Rotate(z)       z      x
-    /  \   - - - - - - - ->    / \    / \
-   T2   x                     T1  T2 T3  T4
-       / \
-     T3  T4
- */
 // Performs a left rotation on a subtree rooted with current
 struct Node* rotateLeft(struct Node * x){
 	struct Node *y = x->right;
@@ -72,20 +70,10 @@ struct Node* rotateLeft(struct Node * x){
 	// Return new root
 	return y;
 }
-/*
-         z                                      y
-        / \                                   /   \
-       y   T4      Right Rotate (z)          x      z
-      / \          - - - - - - - - ->      /  \    /  \
-     x   T3                               T1  T2  T3  T4
-    / \
-  T1   T2
-
- */
 // Performs a right rotation on a subtree rooted with current
 struct Node* rotateRight(struct Node * y){
-    struct Node *x = y->left;
-    struct Node *T2 = x->right;
+	struct Node *x = y->left;
+	struct Node *T2 = x->right;
 
     // Perform rotation
     x->right = y;
@@ -111,15 +99,17 @@ struct Node* balance(struct Node* current){
     // Left Left Case
     if (GT(balance, 1)){
     	// Left Right Case
-    	if(LT(getBalance(current->left), 0))
+    	if(LT(getBalance(current->left), 0)){
     		current->left =  rotateLeft(current->left);
+		}
         return rotateRight(current);
     }
     // Right Right Case
     if (LT(balance, -1)){
     	// Right Left Case
-        if(GT(getBalance(current->right), 0))
+        if(GT(getBalance(current->right), 0)){
         	current->right = rotateRight(current->right);
+		}
     	return rotateLeft(current);
     }
     /* return the (unchanged) node pointer */
@@ -138,21 +128,24 @@ struct Node* removeLeftmost(struct Node* current){
 TYPE leftMost(struct Node* node){
     struct Node* current = node;
     /* loop down to find the leftmost leaf */
-    while (current->left != NULL)
+    while (current->left != NULL){
         current = current->left;
-
+	}
     return current->value;
 }
 struct Node* getNode(struct Node* current, TYPE search){
 	while(current != NULL){
 		// Match found?
-		if(EQ(current->value, search))
+		if(EQ(current->value, search)){
 			return current;
+		}
 		// Is our search value less than the value at the current node?
-		else if(LT(search, current->value))
+		else if(LT(search, current->value)){
 			current = current->left; // Move to left child
-		else // search value is greater than the value at the current node
+		}
+		else{ // search value is greater than the value at the current node
 			current = current->right; // Move to right child
+		}
 	}
 	return NULL;
 }
@@ -170,10 +163,12 @@ struct Node* removeNode(struct Node* current, TYPE value){
 			return temp; // return the left child of the node just removed
 		}
 	}
-	else if(LT(value, current->value))
+	else if(LT(value, current->value)){
 		current->left = removeNode(current->left, value);
-	else
+	}
+	else{
 		current->right = removeNode(current->right, value);
+	}
 	return balance(current);
 }
 void preOrder(struct Node *root){
@@ -200,13 +195,7 @@ int main(){
   cout << "Adding 6th node\n\n";
   root = addNode(root, 25);
   //cout << "done adding nodes..\n";
-  /* The constructed AVL Tree would be
-            30
-           /  \
-         20   40
-        /  \     \
-       10  25    50
-  */
+
   cout << "Preorder traversal of the constructed AVL tree is \n";
   //cout << "Root value is: " << root->value << "\n";
   preOrder(root);
