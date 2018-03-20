@@ -40,7 +40,7 @@ long int power(long int x, long int n){
 	}
 }
 int main(){
-	cout << "15^9 = " << power(15,13) << endl;
+	cout << "15^13 = " << power(15,13) << endl;
 	return 0;
 }
 
