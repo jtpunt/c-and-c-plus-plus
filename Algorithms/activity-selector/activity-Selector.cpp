@@ -34,7 +34,7 @@ vector<int> activitySelector(vector<vector<int> > &activities){
  ***************************************************************************/
 void insertionSort(vector<vector<int>> &activities){
 	int key_a, key_s, key_f, j;
-	for(int i  = 1; i < activities.size(); i++){
+	for(int i = 1; i < activities.size(); i++){
 		key_a = activities[i][0]; // activity #
 		key_s = activities[i][1]; // start time
 		key_f = activities[i][2]; // finish time
