@@ -38,13 +38,16 @@ void knapsack(vector<int> &weights, vector<int> &benefits, int W){
 		for(int w = 1; w <= W; w++){ // grow the weight of the knapsack
 			if(weights[i-1] <= w){ // item i-1 can be apart of the solution
 				// current item's benefits + OPT of prev item (if is room for it) > OPT of prev item at current weight w
-				if(benefits[i-1] + OPT[i-1][w-weights[i-1]] > OPT[i-1][w])
+				if(benefits[i-1] + OPT[i-1][w-weights[i-1]] > OPT[i-1][w]){
 					OPT[i][w] = benefits[i-1] + OPT[i-1][w-weights[i-1]];
-				else // don't use the current item
+				}
+				else{ // don't use the current item
 					OPT[i][w] = OPT[i-1][w];
+				}
 			}
-			else // item i-1 cannot be apart of the solution, it is too big
+			else{ // item i-1 cannot be apart of the solution, it is too big
 				OPT[i][w] = OPT[i-1][w]; // use the OPT obtained from the previous item with the current weight
+			}
 		}
 	}
 	displayVector(OPT);
