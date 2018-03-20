@@ -28,9 +28,7 @@ vector<int> convertString(string fileContent){
 	int length = fileContent.length();
 	for(int i = 0; i < length; i++){
 		// If the character is a space, skip it and move on
-		if(fileContent[i] == ' '){
-
-		}
+		if(fileContent[i] == ' '){}
 		else{
 			// Keep looping over the characters to read in possible multi-digit integers
 			while(fileContent[i] != ' ' && i != length){
@@ -55,8 +53,9 @@ void readFile(string fileName, vector<string> *content){
 	ifstream ioFile;
 	string line;
 	ioFile.open(fileName.c_str());
-	if (ioFile.fail())
+	if (ioFile.fail()){
 		cout << "The file failed to open: " << endl;
+	}
 	else{
 		while (getline(ioFile, line)){
 			(*content).push_back(line);
@@ -97,20 +96,26 @@ void createSets(vector <string> v1, vector<vector<int> > &v2, vector<vector<int>
 		temp = convertString(v1[i]);
 		if(temp.size() == 1){ // line that has the amount of activities in each set
 			count++;
-			if(count == 1)
+			if(count == 1){
 				v2.resize(temp[0]); // set size of v2
-			else if(count == 2)
+			}
+			else if(count == 2){
 				v3.resize(temp[0]); // set size of v3
-			else
+			}
+			else{
 				v4.resize(temp[0]); // set size of v4
+			}
 		}
 		else{
-			if(count == 1)
+			if(count == 1){
 				copyArray(v2, temp, index1++);
-			else if(count == 2)
+			}
+			else if(count == 2){
 				copyArray(v3, temp, index2++);
-			else
+			}
+			else{
 				copyArray(v4, temp, index3++);
+			}
 		}
 	}
 }
