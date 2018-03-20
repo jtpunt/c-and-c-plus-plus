@@ -82,10 +82,12 @@ void readLine(ifstream& ioFile, vector<City*> &cities){
 void openFile(ifstream& ioFile, string fileName , vector<City*> &cities){
 	string line;
 	ioFile.open(fileName.c_str());
-	if (ioFile.fail())
+	if (ioFile.fail()){
 		cout << "The file failed to open: \n";
-	else
+	}
+	else{
 		readLine(ioFile, cities);
+	}
 }
 /*******************************************************************************************************
  * Returns the next bins that should be explored based on the current bin of the city just traveled to.
@@ -332,23 +334,23 @@ vector<City*> bruteForceTour(vector<CircularList<City*>*> &bins, vector<City*> &
 	vector<City*> visited_cities_min;
 	min_distance = numeric_limits<int>::max();
 	makeCpyCities(citiesCpy, cities);
-    for(int i = start; i <= end; i++){
-    	cout << "\nstarting at city " << i << "\n";
-    	int distance = greedy_tour(bins, cities.size(), visited_cities, i);
-    	cout << distance << "\n";
-    	if(distance < min_distance){
-    		cout << " distance < min_distance with city " << i << "\n";
-    		min_distance = distance; // update min distance traveled
-    		// deallocate memory in visited_cities_min and then copy tour details from visited_cities into visited_cities_min
-    		makeCpyCities(visited_cities_min, visited_cities);
+    	for(int i = start; i <= end; i++){
+    		cout << "\nstarting at city " << i << "\n";
+    		int distance = greedy_tour(bins, cities.size(), visited_cities, i);
+    		cout << distance << "\n";
+    		if(distance < min_distance){
+    			cout << " distance < min_distance with city " << i << "\n";
+    			min_distance = distance; // update min distance traveled
+    			// deallocate memory in visited_cities_min and then copy tour details from visited_cities into visited_cities_min
+    			makeCpyCities(visited_cities_min, visited_cities);
+    		}
+    		visited_cities.clear(); // reset visited_cities for next tour
+    		packBins(bins, citiesCpy); // deallocate current memory in bins and reset bins for next tour
     	}
-    	visited_cities.clear(); // reset visited_cities for next tour
-    	packBins(bins, citiesCpy); // deallocate current memory in bins and reset bins for next tour
-    }
-    deallocateCities(cities);
-    deallocateCities(citiesCpy);
-    deallocateBins(bins);
-    return visited_cities_min;
+    	deallocateCities(cities);
+    	deallocateCities(citiesCpy);
+    	deallocateBins(bins);
+    	return visited_cities_min;
 }
 int main(int argc, char* argv[]){
 	if (argc != 2){
@@ -372,14 +374,14 @@ int main(int argc, char* argv[]){
 	packBins(bins, cities);
 
 	auto clock_start = Clock::now();
-//    visited_cities_min = bruteForceTour(bins, cities, 0, cities.size() - 1, distance); // brute force on cities 0 to cities.size() - 1
+	//    visited_cities_min = bruteForceTour(bins, cities, 0, cities.size() - 1, distance); // brute force on cities 0 to cities.size() - 1
 	visited_cities_min = bruteForceTour(bins, cities, 11, 11, distance); // single tour on just city 11
 	auto clock_end = Clock::now();
 
 	outputResults(myFile, fileName + ".tour", visited_cities_min, distance);
 	myFile.close();
-    deallocateCities(visited_cities_min);
-    cout << fileName << " took " << std::chrono::duration_cast<std::chrono::duration<float>>(clock_end - clock_start).count() << " sec\n";
+    	deallocateCities(visited_cities_min);
+    	cout << fileName << " took " << std::chrono::duration_cast<std::chrono::duration<float>>(clock_end - clock_start).count() << " sec\n";
 
 
 	return 0;
