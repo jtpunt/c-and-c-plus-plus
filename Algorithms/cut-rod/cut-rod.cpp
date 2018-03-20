@@ -7,10 +7,8 @@
 #include "cut-rod.hpp"
 #include <math.h>
 #include <iostream>
-#include <iomanip>
 using std::vector;
 using std::cout;
-using std::setw;
 
 int max(int a, int b) { return (a > b)? a: b;}
 
@@ -43,15 +41,13 @@ int bottomUpCutRod(vector<int> price, int n){
 		for(int cut_pos = 0; cut_pos < rod_length; cut_pos++){
 			int length_leftover = rod_length - cut_pos - 1;
 			revenue = max(revenue, price[cut_pos] + max_revenue[length_leftover]);
-			cout << setw(2) << revenue << " ";
 		}
-		cout << "\n";
 		max_revenue[rod_length] = revenue; // stores the optimal price for the current rod_length
 	}
 	return max_revenue[n];
 }
 int main(){
 	vector <int> price{1, 5, 8, 9, 10, 17, 17, 20};
-	cout << "\nMax revenue obtainable for a rod of size " << price.size() << ": "<< bottomUpCutRod(price, price.size());
+	cout << "Max revenue obtainable for a rod of size " << price.size() << ": "<< bottomUpCutRod(price, price.size()) << "\n";
 }
 
