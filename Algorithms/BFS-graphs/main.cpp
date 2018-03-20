@@ -49,8 +49,10 @@ void buildAdjList(vector<string> wrestlers, vector<string> rivalries, vector<vec
 		str1 = rivalries[i].substr(0, pos);
 		str2 = rivalries[i].substr(pos+1);
 		// undirected graph, so both wrestlers point to each other
-		adjList[searchVector(wrestlers, str1)].push_back(searchVector(wrestlers, str2));
-		adjList[searchVector(wrestlers, str2)].push_back(searchVector(wrestlers, str1));
+		int idx_wrestler1 = searchVector(wrestlers, str1);
+		int idx_wrestler2 = searchVector(wrestlers, str2);
+		adjList[idx_wrestler1].push_back(idx_wrestler2);
+		adjList[idx_wrestler2].push_back(idx_wrestler1);
 	}
 }
 /**************************************************************************
@@ -66,8 +68,9 @@ void readLine(ifstream& ioFile, vector<string> &content){
 	getline(ioFile,line); // skips to the next line, or a blank line will be read in
 	for(int i = 0; i < num; i++){
 		getline(ioFile,line);
-		if(line.size() && line[line.size()-1] == '\r') // carriage return symbol found?
+		if(line.size() && line[line.size()-1] == '\r'){ // carriage return symbol found?
 			line = line.substr(0, line.size() - 1); // remove carriage return symbol
+		}
 		content.push_back(line);
 	}
 }
@@ -82,8 +85,9 @@ void readLine(ifstream& ioFile, vector<string> &content){
 void readFile(string fileName, vector<string> &wrestlers, vector<string> &rivalries){
 	ifstream ioFile;
 	ioFile.open(fileName.c_str());
-	if (ioFile.fail())
+	if (ioFile.fail()){
 		cout << "The file failed to open: " << endl;
+	}
 	else{
 		readLine(ioFile, wrestlers);
 		readLine(ioFile, rivalries);
