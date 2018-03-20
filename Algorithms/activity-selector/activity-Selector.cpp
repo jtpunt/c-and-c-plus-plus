@@ -19,7 +19,7 @@ vector<int> activitySelector(vector<vector<int> > &activities){
 	vector<int> A(1); // set of activities being select
 	A[0] = activities[n - 1][0]; // greedy select - last activity with the last start time is selected
 	int i = n - 1;
-	for(int m = n - 1; m >= 0; m--){ // loop through each activity from n-1 ... 0
+	for(int m = n - 2; m >= 0; m--){ // loop through each activity from n-2 ... 0
 		if(activities[m][2] <= activities[i][1]){ // activity[m][finish] <= activity[i][start]
 			A.push_back(activities[m][0]); // store the activity #
 			i = m; // new activity, move forward
