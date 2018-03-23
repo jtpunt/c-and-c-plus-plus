@@ -117,15 +117,15 @@ int main(){
 	readFile("data.txt", merge1, merge2, merge3);
 
 	cout << "Running Merge Sort on first vector" << endl;
-	insertionSort(merge1);
+	mergeSort(merge1, 0, merge1.size() - 1);
 	printVector(merge1);
 
 	cout << "Running Merge Sort on second vector" << endl;
-	insertionSort(merge2);
+	mergeSort(merge2, 0, merge2.size() - 1);
 	printVector(merge2);
 
 	cout << "Running Merge Sort on third vector" << endl;
-	insertionSort(merge3);
+	mergeSort(merge3, 0, merge3.size() - 1);
 	printVector(merge3);
 
 	writeFile("insert.out", merge1, merge2, merge3);
