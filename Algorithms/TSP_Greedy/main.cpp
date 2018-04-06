@@ -139,6 +139,7 @@ int getStartingCity(vector<CircularList<T>*> &bins, vector<City*> &visited_citie
 		}
 		bin++;
 	}
+	return bin;
 }
 /******************************************************************
  * Returns the Euclidean distance between the two cities.
