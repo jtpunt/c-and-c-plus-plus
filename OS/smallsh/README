@@ -1,0 +1,3 @@
+Compile the code with: gcc -o smallsh smallsh.c
+To run the code, run the following code: ./smallsh 
+								     OR: smallsh
