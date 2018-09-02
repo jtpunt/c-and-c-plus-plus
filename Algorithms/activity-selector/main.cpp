@@ -79,8 +79,8 @@ void copyArray(vector<vector<int> > &parent, vector<int> child, int row){
 /**************************************************************************
  * param: v1 - vector of strings containing every line from act.txt
  * param: v2 - address to a 2d array to store the first set of activities
- * param: v2 - address to a 2d array to store the second set of activities
- * param: v2 - address to a 2d array to store the third set of activities
+ * param: v3 - address to a 2d array to store the second set of activities
+ * param: v4 - address to a 2d array to store the third set of activities
  * post: Each 2d array is resized according to the number of activities listed
  *       in v1
  * post: Each 2d array is filled with set data, including the activitity number,
