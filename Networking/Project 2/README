@@ -1,0 +1,24 @@
+To get this chat program going, you need to start the chat server
+program before executing the client chat program.
+
+To compile the server chat program, run the following command:
+	gcc -o ftpserver ftpserver.c
+
+To execute the server chat program, run the following command:
+	./ftpserver 20000
+	./ftpserver [port #]
+
+To compile the client chat program and have ftpserver send its directory to the client, run the following command:
+		python3 ftpclient.py localhost 20000 -l 0 20001
+		python3 ftpclient.py flip1 20000 -l 0 20001
+USAGE:	python3 ftpclient.py [SERVER_HOST] [SERVER_PORT] [COMMAND] [FILENAME] [DATA_PORT]
+
+To compile the client chat program and have the ftpserver send a specific file in it's directory, run the following command:
+		python3 ftpclient.py localhost 20000 -g test.txt 20001
+		python3 ftpclient.py flip1 20000 -g someFile.txt 20001
+USAGE:	python3 ftpclient.py [SERVER_HOST] [SERVER_PORT] [COMMAND] [FILENAME] [DATA_PORT]
+
+
+EXTRA CREDIT - This program can transfer files additional to text files. Example:
+		python3 ftpclient.py flip1 20000 -g ftpserver.py 20001
+
