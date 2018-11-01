@@ -1,0 +1,23 @@
+#!/bin/bash
+# number of threads:
+declare -a scheduleArr=("dynamic" "static")
+for numThreads in 1 2 4
+do
+	# test for coarse-grained vs fine-grained parallelism
+	for p in 1 2
+	do
+		# test dynamic schedule vs static schedule
+		for threadType in "${scheduleArr[@]}"
+		do
+			echo -ne "Testing with $numThreads $threadType threads with "
+			if((p == 1))
+			then
+				echo "coarse-grained parallelism."
+			else
+				echo "fine-grained parallelism."
+			fi
+			g++ -DNUMTHREADS=$numThreads -DPARALLELISMTYPE=$p -DTHREADTYPE=$threadType project2.cpp -o project2 -lm -fopenmp
+			./project2
+		done
+	done
+done

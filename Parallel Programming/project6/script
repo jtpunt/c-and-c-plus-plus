@@ -1,0 +1,25 @@
+#!/bin/bash
+for local_size in 8 32 128 256 512 1024
+do
+	for num_elements in 1024 2048 4096 32768 131072 524288 1048576 2097152 4194304 8388608
+	do
+		echo "Testing With File Mult.cl"
+		g++ -DLOCAL_SIZE=$local_size -DNUM_ELEMENTS=$num_elements /scratch/cuda-7.0/lib64/libOpenCL.so -o first first.cpp -lm -fopenmp
+		./first
+
+		echo "Testing With File MultAdd.cl"
+		g++ -DLOCAL_SIZE=$local_size -DNUM_ELEMENTS=$num_elements /scratch/cuda-7.0/lib64/libOpenCL.so -o second second.cpp -lm -fopenmp
+		./second
+
+	done
+done
+for local_size in 32
+do
+	for num_elements in 1024 2048 4096 32768 131072 524288 1048576 2097152 4194304 8388608
+	do
+		echo "Testing With File MultReduce.cl"
+		g++ -DLOCAL_SIZE=$local_size -DNUM_ELEMENTS=$num_elements /scratch/cuda-7.0/lib64/libOpenCL.so -o third third.cpp -lm -fopenmp
+		./third
+		# local group is always 32 for multiply reduce..
+	done
+done

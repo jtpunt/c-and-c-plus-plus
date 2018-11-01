@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# test # indicates the function we are testing 
+for test in 1 2 3 4
+do
+	# number of subdivisions
+	for s in 1024 32768 1048576 32000000
+	do
+		echo "Testing with test $test, ARRAYSIZE = $s."
+		g++ -DARRAYSIZE=$s -DTEST=$test -DNUMTRIES=5 simd.p5.cpp -o project5 -lm -fopenmp
+		./project5
+		echo
+	done
+done
+

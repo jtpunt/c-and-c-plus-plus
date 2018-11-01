@@ -1,0 +1,16 @@
+#!/bin/bash
+# number of threads:
+for threads in 1 2 4
+do
+	# number of padding - Fix # 1
+	for numpad in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+	do
+		echo "Testing with fix #1, with $threads threads and NUMPAD set to $numpad."
+		g++ -DNUMPAD=$numpad -DARRAYSIZE=4 -DNUMT=$threads -DFIX=1 project3.cpp -o project3 -lm -fopenmp
+		./project3
+	done
+	# No padding - Fix #2
+	echo "Testing with fix #2, with $threads threads and NUMPAD set to 0."
+	g++ -DNUMPAD=0 -DARRAYSIZE=4 -DNUMT=$threads -DFIX=2 project3.cpp -o project3 -lm -fopenmp
+	./project3
+done
