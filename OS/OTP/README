@@ -25,17 +25,3 @@ To use this program:
 
 6. Decrypt the message
 	- syntax: ./otp_dec myciphertext mykey 57172 > myplaintext
-
-
-IDEAS:
-	 - Create an char array of size 26 (0 - 25) for the 'key'
-	 - Fill this 'key' array with random, but unique characters
-	 - Get the numerical value of the current letter of the ciphertext and store it
-	 - If the first char of the ciphertext is 'A' or 'a', then the numerical value of 'a' or 'A' is 0.
-	 	- The numerical value of ' ' ( a space ) is 27.
-	 - Use that numerical value as an index into array 'key' and return the random char  (aka key letter) that's stored there
-	 - Get the numerical value of the 'key letter' received by using the key on the ciphertext and store it
-	 - Add the two numerical representations of the ciphertext + key and see:
-	 	- if the sum is > 26, take the remainder, after subtraction of 26 is taken and store it as
-	 	- Return the numerical value of the key + ciphertext char 
-	 - Use the numerical value returned and get the regular char representation of that #
